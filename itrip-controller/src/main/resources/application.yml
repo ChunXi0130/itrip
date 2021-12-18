@@ -1,0 +1,30 @@
+server:
+  # 端口号
+  port: 8001
+spring:
+  application:
+    # 服务名
+    name: service_edu
+  profiles:
+    # 环境设置：dev、test、prod
+    active: dev
+  datasource:
+    # mysql数据库连接
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/itrip?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    password: root
+    username: root
+  jackson:
+    #返回json的全局时间格式
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+#配置logback日志需要删掉前面的日志配置
+mybatis-plus:
+  configuration:
+    #mybatis日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#logging:
+#  level:
+    #输出日志级别
+#    root: info
+
