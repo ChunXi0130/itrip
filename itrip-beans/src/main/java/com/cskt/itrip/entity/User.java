@@ -1,8 +1,6 @@
 package com.cskt.itrip.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -58,10 +56,14 @@ public class User implements Serializable {
     @ApiModelProperty(value = "百度账号")
     private String baidu;
 
+    @TableField(fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "创建时间")
     private Date creationDate;
 
     private Long createdBy;
 
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @ApiModelProperty(value = "修改时间")
     private Date modifyDate;
 
     private Long modifiedBy;
@@ -70,7 +72,7 @@ public class User implements Serializable {
     private Integer activated;
 
     @ApiModelProperty(value = "逻辑删除")
+    @TableLogic
     private Integer isDeleted;
-
 
 }

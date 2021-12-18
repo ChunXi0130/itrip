@@ -1,19 +1,15 @@
 package com.cskt.itrip.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.cskt.itrip.common.constants.ErrorCodeEnum;
 import com.cskt.itrip.common.vo.ReturnResult;
 import com.cskt.itrip.entity.User;
+import com.cskt.itrip.entity.vo.UserRegisterCondition;
 import com.cskt.itrip.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -24,26 +20,26 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2021-12-15
  */
 @RestController
-@RequestMapping("/itrip/user")
-@Api("用户登录 注册")
+@RequestMapping("/api")
+@Api(value = "提供用户登录 注册的相关接口", tags = "用户管理")
 public class UserController {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
-    @GetMapping("/checkUser/{name}")
+    @GetMapping("/ckusr")
     @ApiOperation("查询用户是否存在")
-    public ReturnResult checkUser(@PathVariable String name) {
-        if (StringUtils.isEmpty(name)) {
-            return ReturnResult.error(ErrorCodeEnum.AUTH_PARAMETER_IS_EMPTY);
-        }
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("user_code", name);
-        User user = userService.getOne(queryWrapper);
-        if (user !=  null) {
-            return ReturnResult.error(ErrorCodeEnum.AUTH_USER_ALREADY_EXISTS);
-        }
-        return ReturnResult.ok();
+    public ReturnResult checkUser(String name) {
+        User user = userService.getUser(name);
+        return ReturnResult.ok(user);
     }
+
+    @PostMapping("/doRegister")
+    @ApiOperation(value = "用户邮箱注册")
+    public ReturnResult doRegister(@RequestBody UserRegisterCondition userRegisterCondition) {
+        User user = userService.userRegister(userRegisterCondition);
+        return ReturnResult.ok(user);
+    }
+
 }
 

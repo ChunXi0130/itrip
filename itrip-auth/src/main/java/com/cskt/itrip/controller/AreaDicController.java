@@ -1,6 +1,7 @@
 package com.cskt.itrip.controller;
 
 
+import com.cskt.itrip.common.vo.ReturnResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/itrip/area-dic")
 public class AreaDicController {
+
+    public ReturnResult address() {
+        return ReturnResult.ok();
+    }
 
 }
 
