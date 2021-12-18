@@ -8,7 +8,7 @@ package com.cskt.itrip.common.constants;
 public enum ErrorCodeEnum {
     /*前台*/
 
-    OK("00000", "成功"),
+    OK("20000", "成功"),
 
     AUTH_UNKNOWN("30000", "用户不存在"),
 

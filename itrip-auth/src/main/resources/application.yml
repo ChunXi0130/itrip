@@ -1,6 +1,8 @@
 server:
   # 端口号
-  port: 8001
+  port: 8801
+#  servlet:
+#    context-path: /auth
 spring:
   application:
     # 服务名
@@ -20,11 +22,18 @@ spring:
     time-zone: GMT+8
 #配置logback日志需要删掉前面的日志配置
 mybatis-plus:
+#  mapper-locations: classpath:com/cskt/itrip/mapper/xml/*.xml
   configuration:
-    #mybatis日志
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+#  type-aliases-package: com.cskt.itrip.entry
 #logging:
 #  level:
     #输出日志级别
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 #    root: info
 

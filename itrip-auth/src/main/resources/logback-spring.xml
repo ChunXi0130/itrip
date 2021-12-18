@@ -129,7 +129,7 @@
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
         <!--可以输出项目中的debug日志，包括mybatis的sql日志-->
-        <logger name="com.cskt" level="INFO" />
+        <logger name="com.cskt.itrip" level="INFO" />
 
         <!--
             root节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性
@@ -146,7 +146,7 @@
 
     <!--生产环境:输出到文件-->
     <springProfile name="pro">
-        <logger name="com.cskt" level="WARN" />
+        <logger name="com.cskt.itrip" level="WARN" />
         <root level="INFO">
             <appender-ref ref="CONSOLE" />
             <appender-ref ref="DEBUG_FILE" />
